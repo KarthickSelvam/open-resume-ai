@@ -19,6 +19,16 @@ const defaultFileState = {
   fileUrl: "",
 };
 
+// Supported file types for document parsing
+const SUPPORTED_FILE_EXTENSIONS = [".pdf", ".docx", ".doc"];
+const SUPPORTED_FILE_ACCEPT = ".pdf,.docx,.doc";
+
+const isSupportedFile = (filename: string): boolean => {
+  return SUPPORTED_FILE_EXTENSIONS.some(ext => 
+    filename.toLowerCase().endsWith(ext)
+  );
+};
+
 export const ResumeDropzone = ({
   onFileUrlChange,
   className,
@@ -49,7 +59,7 @@ export const ResumeDropzone = ({
   const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const newFile = event.dataTransfer.files[0];
-    if (newFile.name.endsWith(".pdf")) {
+    if (isSupportedFile(newFile.name)) {
       setHasNonPdfFile(false);
       setNewFile(newFile);
     } else {
@@ -132,7 +142,7 @@ export const ResumeDropzone = ({
                 !playgroundView && "text-lg font-semibold"
               )}
             >
-              Browse a pdf file or drop it here
+              Browse a document file or drop it here
             </p>
             <p className="flex text-sm text-gray-500">
               <LockClosedIcon className="mr-1 mt-1 h-3 w-3 text-gray-400" />
@@ -167,12 +177,12 @@ export const ResumeDropzone = ({
                 <input
                   type="file"
                   className="sr-only"
-                  accept=".pdf"
+                  accept={SUPPORTED_FILE_ACCEPT}
                   onChange={onInputChange}
                 />
               </label>
               {hasNonPdfFile && (
-                <p className="mt-6 text-red-400">Only pdf file is supported</p>
+                <p className="mt-6 text-red-400">Only PDF, DOCX, and DOC files are supported</p>
               )}
             </>
           ) : (
