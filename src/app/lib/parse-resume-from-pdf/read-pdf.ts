@@ -1,3 +1,10 @@
+/**
+ * @deprecated This file is deprecated and replaced by read-document.ts
+ * which uses the Unstructured API instead of PDF.js.
+ * 
+ * This file is kept for reference purposes only.
+ */
+
 // Getting pdfjs to work is tricky. The following 3 lines would make it work
 // https://stackoverflow.com/a/63486898/7699841
 import * as pdfjs from "pdfjs-dist";
