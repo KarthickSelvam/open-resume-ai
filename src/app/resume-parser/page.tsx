@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { readPdf } from "lib/parse-resume-from-pdf/read-pdf";
+import { readPdf } from "lib/parse-resume-from-pdf/read-document";
 import type { TextItems } from "lib/parse-resume-from-pdf/types";
 import { groupTextItemsIntoLines } from "lib/parse-resume-from-pdf/group-text-items-into-lines";
 import { groupLinesIntoSections } from "lib/parse-resume-from-pdf/group-lines-into-sections";
